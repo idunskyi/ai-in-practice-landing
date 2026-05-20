@@ -371,9 +371,9 @@ section.tight { padding-block: clamp(40px, 5vw, 80px); }
 }
 .trust-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 12px 36px;
+  gap: 12px 28px;
 }
 .trust-label {
   font-size: 11px;
@@ -381,18 +381,30 @@ section.tight { padding-block: clamp(40px, 5vw, 80px); }
   text-transform: uppercase;
   opacity: 0.55;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 .trust-companies {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 28px;
+  gap: 8px 16px;
   flex: 1;
+  min-width: 0;
   font-family: var(--display);
-  font-size: clamp(15px, 1.2vw, 19px);
+  font-size: clamp(14px, 0.9vw, 16px);
   letter-spacing: 0.02em;
+  align-items: center;
 }
-.trust-companies span { opacity: 0.85; }
+.trust-companies span:not(.sep) { opacity: 0.85; white-space: nowrap; }
 .trust-companies .sep { opacity: 0.35; }
+@media (max-width: 880px) {
+  .trust-row {
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .trust-companies { width: 100%; }
+}
 
 /* ============== PROBLEM ============== */
 .problem-grid {
@@ -443,6 +455,7 @@ section.tight { padding-block: clamp(40px, 5vw, 80px); }
 .audience-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto auto 1fr;
   gap: 1px;
   background: var(--rule-light);
   border: 1px solid var(--rule-light);
@@ -452,8 +465,9 @@ section.tight { padding-block: clamp(40px, 5vw, 80px); }
 .audience-card {
   background: var(--ink);
   padding: clamp(28px, 3vw, 44px);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
   gap: 18px;
   min-height: 360px;
   position: relative;
@@ -478,7 +492,6 @@ section.tight { padding-block: clamp(40px, 5vw, 80px); }
   margin: 0;
   line-height: 1.55;
 }
-.audience-card .h3 { margin-top: auto; }
 
 /* ============== WALK HOME ============== */
 .walk-grid {

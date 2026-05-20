@@ -1,6 +1,8 @@
 /* global React */
 const { useState, useEffect } = React;
 
+const APPLY_URL = "https://calendly.com/i-dunskiy-1/application-for-ai-in-practice-course";
+
 /* ----------------------------------------------------------------
    Reusable logo lockup — rebuilt because original SVG only contained
    the tagline (the big wordmark glyphs were missing image refs).
@@ -30,7 +32,7 @@ function Nav() {
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
         </div>
-        <a href="#apply" className="nav-cta">
+        <a href={APPLY_URL} className="nav-cta" target="_blank" rel="noopener noreferrer">
           Apply for Cohort 2 <span aria-hidden>→</span>
         </a>
       </div>
@@ -58,7 +60,7 @@ function Hero({ heroImage }) {
             </p>
 
             <div className="hero-actions">
-              <a href="#apply" className="btn btn-primary">
+              <a href={APPLY_URL} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
                 Apply for Cohort 2 <span className="arrow" aria-hidden>→</span>
               </a>
               <a href="#program" className="btn btn-ghost-light">
