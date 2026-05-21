@@ -42,7 +42,7 @@ function App() {
         <Walkaway />
         <Builds />
         <Modules />
-        <Instructor photo="assets/instructor.jpeg" />
+        <Instructor photo="assets/instructor.png" />
         <Testimonials />
         <Pricing />
         <FAQ />

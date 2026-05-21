@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>AI in Practice — The Healthcare Executive Program</title>
+  <meta name="description" content="An invite-only cohort program for senior US healthcare executives. Build a board-ready AI strategy, an AI use policy, and working agents on your own systems — in 10 weeks." />
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Manrope:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ============== PRINT-READY OVERRIDES ============== */
+    html, body {
+      background: var(--paper-3);
+    }
+
+    /* Force background colors/images on print */
+    html, body, * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* Kill sticky nav so it doesn't repeat on every page */
+    .nav {
+      position: static !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    /* Kill hover states / animations / transitions */
+    *, *::before, *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+
+    /* Open all FAQ details so the content shows in print */
+    details.faq { /* keep, just open below */ }
+
+    /* Hide tweaks panel and any floating affordances */
+    [data-tweaks-panel], .tweaks-panel, #tweaks-panel,
+    [class*="TweaksPanel"], [class*="tweaks_panel"] {
+      display: none !important;
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--paper-3);
+      }
+
+      /* Each top-level section becomes its own page-ish block.
+         Allow large sections to flow across multiple pages, but avoid
+         splitting smaller cards/quotes/modules awkwardly. */
+      section {
+        break-inside: auto;
+        page-break-inside: auto;
+      }
+
+      /* Big dark sections should start a new page so the visual rhythm
+         survives translation to PDF. */
+      .hero,
+      .trust,
+      .final,
+      footer {
+        break-before: auto;
+        page-break-before: auto;
+      }
+
+      /* Tight: keep cards, modules, builds, quotes, tiers from splitting */
+      .audience-card,
+      .module,
+      .build,
+      .tquote,
+      .tier,
+      .quote,
+      .faq,
+      .test-video,
+      .instr-photo,
+      .hero-rating,
+      .walk-col li {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Section headings: keep with their following content */
+      .sec-head, .h2, .h3, .display, .hero-title {
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      /* Hero: don't stretch to viewport height; let it size to content. */
+      .hero {
+        min-height: 0 !important;
+      }
+
+      /* Show all FAQ answers in print */
+      details.faq {
+        /* Force open by overriding [open] requirement */
+      }
+      details.faq > .answer,
+      details.faq .answer {
+        display: block !important;
+      }
+
+      /* Hide play button overlays on testimonial videos, since you can't click in PDF */
+      .test-video .play {
+        opacity: 0.5;
+      }
+
+      /* Avoid overly wide gutters in print */
+      .shell {
+        max-width: 100% !important;
+        padding-inline: 18mm !important;
+      }
+
+      /* Slightly reduce vertical rhythm to use the page better */
+      section {
+        padding-block: clamp(24px, 4vw, 56px) !important;
+      }
+
+      /* Avoid orphaned images */
+      img, svg {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel" src="sections2.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+
+  <script type="text/babel">
+    // Expand all <details class="faq"> after render so answers print
+    function openAllFaqs() {
+      document.querySelectorAll('details.faq, details').forEach(d => d.open = true);
+    }
+
+    async function readyToPrint() {
+      // Wait for fonts
+      if (document.fonts && document.fonts.ready) {
+        try { await document.fonts.ready; } catch (e) {}
+      }
+      // Wait for images to load (or fail)
+      const imgs = Array.from(document.images || []);
+      await Promise.all(imgs.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(res => {
+          img.addEventListener('load', res, { once: true });
+          img.addEventListener('error', res, { once: true });
+        });
+      }));
+      // Wait for React tree to mount
+      const root = document.getElementById('root');
+      let tries = 0;
+      while (root && root.childElementCount === 0 && tries < 50) {
+        await new Promise(r => setTimeout(r, 100));
+        tries++;
+      }
+      openAllFaqs();
+      // Settle margin
+      await new Promise(r => setTimeout(r, 700));
+      openAllFaqs(); // re-run in case React replaced nodes
+      window.print();
+    }
+
+    window.addEventListener('load', readyToPrint);
+  </script>
+</body>
+</html>

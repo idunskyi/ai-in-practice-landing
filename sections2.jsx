@@ -1,8 +1,6 @@
 /* global React */
 const { useState: useState2 } = React;
 
-const APPLY_URL = "https://calendly.com/i-dunskiy-1/application-for-ai-in-practice-course";
-
 /* ============================================================
    Instructor
    ============================================================ */
@@ -102,7 +100,6 @@ function Testimonials() {
   ];
   return (
     <section className="ink" id="testimonials" data-screen-label="09 Testimonials">
-      <div className="sec-num">№ 09 / Cohort voices</div>
       <div className="shell">
         <div className="sec-head">
           <span className="eyebrow">What the cohort said</span>
@@ -149,8 +146,6 @@ function Pricing() {
       desc: "The first 8 enrollees of Cohort 2. The Founding Rate won't repeat in future cohorts.",
       meta: "8 of 8 founding seats remaining",
       cta: "Apply for Cohort 2",
-      href: APPLY_URL,
-      external: true,
       featured: true,
       taken: 7, // 7 of 15 taken, 8 founding open
     },
@@ -161,8 +156,6 @@ function Pricing() {
       desc: "After the founding seats are filled. Same program, same cohort, same outputs.",
       meta: "Cohort 2 seats — 15 max",
       cta: "Apply",
-      href: APPLY_URL,
-      external: true,
       featured: false,
     },
     {
@@ -172,7 +165,6 @@ function Pricing() {
       desc: "Bring two colleagues. Strongest outcomes when leaders learn alongside their org's adjacent decision-makers.",
       meta: "Best for leadership teams",
       cta: "Talk to us",
-      href: "#apply",
       featured: false,
     },
   ];
@@ -211,10 +203,9 @@ function Pricing() {
 
               <div className="meta">{t.meta}</div>
               <a
-                href={t.href}
+                href="#apply"
                 className={"btn " + (t.featured ? "btn-primary" : "btn-ghost-dark")}
                 style={{ marginTop: 16 }}
-                {...(t.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               >
                 {t.cta} <span className="arrow" aria-hidden>→</span>
               </a>
@@ -329,7 +320,7 @@ function FinalCTA() {
           leaders in the room.
         </p>
         <div className="hero-actions">
-          <a href={APPLY_URL} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+          <a href="https://calendly.com/i-dunskiy-1/application-for-ai-in-practice-course" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
             Apply for Cohort 2 <span className="arrow" aria-hidden>→</span>
           </a>
         </div>

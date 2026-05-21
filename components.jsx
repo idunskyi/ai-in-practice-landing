@@ -1,8 +1,6 @@
 /* global React */
 const { useState, useEffect } = React;
 
-const APPLY_URL = "https://calendly.com/i-dunskiy-1/application-for-ai-in-practice-course";
-
 /* ----------------------------------------------------------------
    Reusable logo lockup — rebuilt because original SVG only contained
    the tagline (the big wordmark glyphs were missing image refs).
@@ -32,7 +30,7 @@ function Nav() {
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
         </div>
-        <a href={APPLY_URL} className="nav-cta" target="_blank" rel="noopener noreferrer">
+        <a href="https://calendly.com/i-dunskiy-1/application-for-ai-in-practice-course" target="_blank" rel="noopener noreferrer" className="nav-cta">
           Apply for Cohort 2 <span aria-hidden>→</span>
         </a>
       </div>
@@ -60,7 +58,7 @@ function Hero({ heroImage }) {
             </p>
 
             <div className="hero-actions">
-              <a href={APPLY_URL} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendly.com/i-dunskiy-1/application-for-ai-in-practice-course" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
                 Apply for Cohort 2 <span className="arrow" aria-hidden>→</span>
               </a>
               <a href="#program" className="btn btn-ghost-light">
@@ -146,7 +144,6 @@ function Problem() {
               Medvale network for the last 18 months. If any of them sound like you,
               this program is built for you.
             </p>
-            <span className="problem-tag">→ We built this program for exactly that.</span>
           </div>
 
           <div className="quotes">
@@ -188,7 +185,6 @@ function Audience() {
   ];
   return (
     <section className="ink" id="audience" data-screen-label="04 Audience">
-      <div className="sec-num">№ 04 / Audience</div>
       <div className="shell">
         <div className="sec-head">
           <span className="eyebrow">Who this is built for</span>
@@ -314,7 +310,6 @@ function Builds() {
   ];
   return (
     <section className="ink-2" id="builds" data-screen-label="06 Builds">
-      <div className="sec-num">№ 06 / Cohort 01</div>
       <div className="shell">
         <div className="sec-head">
           <span className="eyebrow">What Cohort 1 built in five weeks</span>
@@ -357,36 +352,36 @@ function Modules() {
       n: 1,
       t: "AI Fundamentals",
       body:
-        "A working mental model of how AI actually works — no jargon required. The four AI types reshaping healthcare, with real examples of what's been built. Where adoption really stands, and how to separate hype from substance.",
-      out: "The ability to evaluate any AI claim — from a vendor, a board member, or a competitor — without being snowed.",
+        "How AI actually works. The categories that matter in healthcare and what each one can do. Where adoption really stands — and how to read hype versus substance. Real examples of what's being built today, and the risks worth knowing in both professional and personal use.",
+      out: "Real cases of what's being built by previous cohort members.",
     },
     {
       n: 2,
       t: "AI for Your Daily Workflows",
       body:
-        "Prompt engineering, model selection, custom instructions. Connect AI to Slack, email, calendar, CRM, and PubMed.",
-      out: "Your first working AI agent, built live during the session on your own systems.",
+        "Prompt engineering best practices, how to work with AI memory, Claude Projects. Connect AI to Slack, email, calendar, CRM, and PubMed. How to build AI agents to streamline your daily workflows.",
+      out: "Your first working AI agent, template for efficient prompts, integration of AI into your daily workflows.",
     },
     {
       n: 3,
       t: "Building Your AI Strategy",
       body:
-        "A six-step framework to identify high-value AI opportunities in your organization, check data readiness, decide buy vs. build, prioritize with a value/effort matrix, and produce a board-ready AI roadmap.",
-      out: "A board-ready AI roadmap with prioritized opportunities and ROI estimates.",
+        "A six-step framework to identify high-value AI opportunities in your organization, how to check data readiness, how to decide buy vs. build, how to prioritize with a value/effort matrix, and how to produce a board-ready AI roadmap.",
+      out: "Identified high-value AI opportunities, a board-ready AI roadmap with prioritized opportunities and ROI estimates.",
     },
     {
       n: 4,
       t: "Protecting Your Organization",
       body:
         "HIPAA in the AI era. Shadow AI, data governance, vendor due diligence. How to set up an AI compliance agent that saves significant time on manual research.",
-      out: "An approved AI use policy, a compliance monitoring agent, and a vendor due diligence checklist (HIPAA + clinical).",
+      out: "AI use policy for your organization, a compliance monitoring agent, and a vendor due diligence checklist.",
     },
     {
       n: 5,
       t: "AI as a Thinking Partner",
       body:
         "The Centaur vs. Cyborg framework. AI sparring partners that challenge your strategy, pressure-test your board deck, and sharpen your sales approach.",
-      out: "Your first AI advisor, built in 5 minutes — and the playbook to build more for any decision you face.",
+      out: "Your first AI advisor and the playbook to build more for strategic decisions you face.",
     },
   ];
   return (
