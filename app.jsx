@@ -1,6 +1,6 @@
 /* global React, ReactDOM, Components1, Components2, useTweaks,
           TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakToggle */
-const { Nav, Hero, Trust, Problem, Audience, Walkaway, Builds, Modules } = window.Components1;
+const { Nav, Hero, Trust, Problem, Audience, Walkaway, Builds, Modules, ScrollToTop } = window.Components1;
 const { Instructor, Testimonials, Pricing, FAQ, FinalCTA, Footer } = window.Components2;
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
@@ -49,6 +49,7 @@ function App() {
         <FinalCTA />
       </main>
       <Footer />
+      <ScrollToTop />
 
       <TweaksPanel title="Tweaks">
         <TweakSection title="Brand">

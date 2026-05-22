@@ -15,24 +15,116 @@ function AIPLogo({ small = false }) {
   );
 }
 
+function scrollToTop() {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+}
+
+const NAV_LINKS = [
+  { href: "#program", label: "Program" },
+  { href: "#builds", label: "Cohort 1 builds" },
+  { href: "#instructor", label: "Instructor" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#faq", label: "FAQ" },
+];
+
+const APPLY_URL = "https://calendly.com/i-dunskiy-1/application-for-ai-in-practice-course";
+
 /* ============================================================
    Top nav
    ============================================================ */
 function Nav() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <nav className="nav">
       <div className="shell nav-row">
-        <AIPLogo />
-        <div className="nav-links">
-          <a href="#program">Program</a>
-          <a href="#builds">Cohort 1 builds</a>
-          <a href="#instructor">Instructor</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <a href="https://calendly.com/i-dunskiy-1/application-for-ai-in-practice-course" target="_blank" rel="noopener noreferrer" className="nav-cta">
-          Apply for Cohort 2 <span aria-hidden>→</span>
+        <a
+          href="#"
+          className="nav-logo"
+          aria-label="AI in Practice — back to top"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToTop();
+            closeMenu();
+          }}
+        >
+          <AIPLogo />
         </a>
+        <div className="nav-links">
+          {NAV_LINKS.map(link => (
+            <a key={link.href} href={link.href}>{link.label}</a>
+          ))}
+        </div>
+        <div className="nav-actions">
+          <a
+            href={APPLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-cta"
+          >
+            Apply for Cohort 2 <span aria-hidden>→</span>
+          </a>
+          <button
+            type="button"
+            className={"nav-menu-toggle" + (menuOpen ? " is-open" : "")}
+            aria-expanded={menuOpen}
+            aria-controls="nav-mobile-menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMenuOpen(open => !open)}
+          >
+            <span className="nav-menu-bar" aria-hidden />
+            <span className="nav-menu-bar" aria-hidden />
+            <span className="nav-menu-bar" aria-hidden />
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="nav-mobile-menu"
+        className={"nav-mobile" + (menuOpen ? " is-open" : "")}
+        aria-hidden={!menuOpen}
+        inert={menuOpen ? undefined : ""}
+      >
+        <button
+          type="button"
+          className="nav-mobile-backdrop"
+          aria-label="Close menu"
+          tabIndex={menuOpen ? 0 : -1}
+          onClick={closeMenu}
+        />
+        <div className="nav-mobile-panel">
+          {NAV_LINKS.map(link => (
+            <a key={link.href} href={link.href} onClick={closeMenu}>
+              {link.label}
+            </a>
+          ))}
+          <a
+            href={APPLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary nav-mobile-cta"
+            onClick={closeMenu}
+          >
+            Apply for Cohort 2 <span className="arrow" aria-hidden>→</span>
+          </a>
+        </div>
       </div>
     </nav>
   );
@@ -74,8 +166,8 @@ function Hero({ heroImage }) {
             </div>
           </div>
 
-          <div>
-            <div className="hero-rating" style={{ marginBottom: 24 }}>
+          <div className="hero-aside">
+            <div className="hero-rating">
               <span className="num">9.5<span style={{ fontSize: 14, opacity: 0.5 }}>/10</span></span>
               <span className="lbl">Rated by 14 senior US healthcare executives in Medvale's invite-only network.</span>
             </div>
@@ -103,16 +195,15 @@ function Trust() {
     "Primary Health Partners",
   ];
   return (
-    <section className="trust tight" data-screen-label="02 Trust">
-      <div className="shell trust-row">
-        <span className="trust-label">Cohort 01 leaders from</span>
-        <div className="trust-companies">
-          {companies.map((c, i) => (
-            <React.Fragment key={c}>
-              <span>{c}</span>
-              {i < companies.length - 1 && <span className="sep" aria-hidden>·</span>}
-            </React.Fragment>
-          ))}
+    <section className="trust" data-screen-label="02 Trust">
+      <div className="shell">
+        <div className="trust-row">
+          <p className="trust-label">Cohort 01 leaders from</p>
+          <div className="trust-companies">
+            {companies.map(c => (
+              <span key={c} className="trust-company">{c}</span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -420,4 +511,29 @@ function Modules() {
   );
 }
 
-window.Components1 = { Nav, Hero, Trust, Problem, Audience, Walkaway, Builds, Modules, AIPLogo };
+/* ============================================================
+   Scroll to top (tablet + mobile)
+   ============================================================ */
+function ScrollToTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 360);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <button
+      type="button"
+      className={"scroll-up" + (visible ? " is-visible" : "")}
+      onClick={scrollToTop}
+      aria-label="Back to top"
+    >
+      <span className="scroll-up-icon" aria-hidden>↑</span>
+    </button>
+  );
+}
+
+window.Components1 = { Nav, Hero, Trust, Problem, Audience, Walkaway, Builds, Modules, AIPLogo, ScrollToTop };
