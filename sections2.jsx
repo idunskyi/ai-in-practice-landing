@@ -85,20 +85,20 @@ function Instructor({ photo }) {
    ============================================================ */
 function Testimonials() {
   const videos = [
-    { name: "Tom Reinhardt", role: "CEO, Cascade Medical Center", tag: "Video testimonial" },
-    { name: "Michael Snelling", role: "CRO, Revenue Group", tag: "Video testimonial" },
-    { name: "Cohort 1 participant", role: "Coming soon", tag: "Video testimonial" },
+    { id: "6wm9ncdQB5c", name: "Michael Snelling", role: "Chief Revenue Officer, Revenue Group", outcome: "10–15 hrs/month saved. Built an AI regulation-tracking agent." },
+    { id: "ipva7tMG9K4", name: "Tom Reinhardt", role: "CEO, Cascade Medical Center", outcome: "First AI governance policy approved and rolling out district-wide in 5 weeks." },
+    { id: "iEjj6ubBq-k", name: "Tim Raderstorf", role: "Co-Founder & Chief Clinical Officer, Steadywell", outcome: "Sales pipeline grew from 14 clients to 60+." },
   ];
   const quotes = [
-    {
-      q: "I'm running an AI company and I learn something practical and new each session. We're now AI-first in our own operations, not just for our patients.",
-      who: "Tim Raderstorf",
-      role: "Co-Founder & Chief Clinical Officer, Steadywell",
-    },
     {
       q: "It pushed me into the deep end, to roll up my sleeves and start using AI. I now start every task, every project thinking about how AI can do this for me faster and more efficiently.",
       who: "Michael Snelling",
       role: "Chief Revenue Officer, Revenue Group",
+    },
+    {
+      q: "I'm running an AI company and I learn something practical and new each session. We're now AI-first in our own operations, not just for our patients.",
+      who: "Tim Raderstorf",
+      role: "Co-Founder & Chief Clinical Officer, Steadywell",
     },
     {
       q: "I was able to lead my organization to develop that structure and governance around AI.",
@@ -121,12 +121,19 @@ function Testimonials() {
 
         <div className="test-videos">
           {videos.map((v, i) => (
-            <div key={i} className="test-video" role="button" tabIndex="0">
-              <span className="tag">{v.tag}</span>
-              <div className="play" aria-hidden />
+            <div key={i} className="test-video">
+              <div className="test-video-embed">
+                <iframe
+                  src={`https://www.youtube.com/embed/${v.id}`}
+                  title={`${v.name} testimonial`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
               <div className="meta">
                 <h3 className="name">{v.name}</h3>
                 <div className="role">{v.role}</div>
+                {v.outcome && <div className="outcome">{v.outcome}</div>}
               </div>
             </div>
           ))}

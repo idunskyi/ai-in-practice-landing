@@ -985,55 +985,29 @@ section.tight { padding-block: clamp(40px, 5vw, 80px); }
 }
 @media (max-width: 980px) { .test-videos { grid-template-columns: 1fr; } }
 .test-video {
-  aspect-ratio: 4/5;
   background: var(--ink);
   color: var(--paper);
   border: 1px solid var(--rule-light);
-  position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: end;
-  padding: 22px;
-  cursor: pointer;
   transition: transform .3s ease;
 }
 .test-video:hover { transform: translateY(-3px); }
-.test-video::before {
-  content: "";
+.test-video-embed {
+  position: relative;
+  aspect-ratio: 16/9;
+  width: 100%;
+}
+.test-video-embed iframe {
   position: absolute;
   inset: 0;
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(221,230,219,0.04) 0 8px,
-      transparent 8px 18px
-    );
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }
-.test-video .play {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 76px; height: 76px;
-  border-radius: 999px;
-  background: rgba(221, 230, 219, 0.1);
-  border: 1px solid var(--rule-light);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background .3s ease;
-}
-.test-video:hover .play { background: var(--accent); border-color: var(--accent); }
-.test-video .play::after {
-  content: "";
-  width: 0; height: 0;
-  border-style: solid;
-  border-width: 12px 0 12px 18px;
-  border-color: transparent transparent transparent var(--paper);
-  margin-left: 4px;
-}
-.test-video .meta { position: relative; z-index: 2; }
+.test-video .meta { padding: 18px 22px 22px; }
 .test-video .name {
   font-family: var(--display);
   font-size: 22px;
@@ -1047,23 +1021,13 @@ section.tight { padding-block: clamp(40px, 5vw, 80px); }
   opacity: 0.65;
   margin-top: 8px;
 }
-.test-video .tag {
-  position: absolute;
-  top: 22px; left: 22px;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  opacity: 0.65;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.test-video .tag::before {
-  content: "";
-  width: 6px; height: 6px;
-  border-radius: 999px;
-  background: var(--accent);
+.test-video .outcome {
+  font-size: 18px;
+  line-height: 1.5;
+  opacity: 1;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule-dark);
 }
 
 .test-quotes {

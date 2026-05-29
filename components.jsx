@@ -388,15 +388,15 @@ function Builds() {
     },
     {
       n: "03",
-      name: "Shelby Dabelich",
-      role: "CEO, Docpace",
-      desc: "Healthtech startup",
+      name: "Tim Raderstorf",
+      role: "Co-Founder & Chief Clinical Officer, Steadywell",
+      desc: "Healthcare AI startup",
       problem:
-        "No visibility into daily pipeline health. At-risk deals surfaced too late. Rep coaching was reactive, not systematic.",
+        "Using AI exclusively for patient-facing features. No systematic use of AI internally for sales, customer outreach, or business operations.",
       built:
-        "An AI agent integrating Claude with HubSpot and Slack that reads deal activity, pushes a daily pipeline overview, flags at-risk deals with specific reasoning, and delivers per-rep coaching feedback.",
+        "Applied Claude to back-end operations — built a Google Sheets-based CRM pipeline and AI-assisted sales workflows to identify and reach prospective clients at scale.",
       result:
-        "Leadership gets <em>daily pipeline intelligence without asking</em>. Reps get actionable improvement feedback automatically.",
+        "Sales pipeline grew from <em>12–14 clients to over 60</em>. Steadywell moved from AI-first in patient care to <em>AI-first across the full business</em>.",
     },
   ];
   return (
