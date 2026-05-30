@@ -372,7 +372,7 @@ function Builds() {
       built:
         "An AI-powered pipeline reporting agent in HubSpot (one prompt pulls deal data into a multi-tab report), an outreach list segmentation agent for the marketing team, and a Cowork agent that tracks regulatory changes and delivers them to compliance and management.",
       result:
-        "10–15 hours saved monthly for the CRO. 2–4 hours saved weekly for the compliance team. Their reaction to the regulation tracking agent: <em>“Holy shit.”</em>",
+        '<em>10–15 hours saved monthly for the CRO.</em> <em>2–4 hours saved weekly for the compliance team.</em> Their reaction to the regulation tracking agent: “Holy shit.”',
     },
     {
       n: "02",
@@ -384,7 +384,7 @@ function Builds() {
       built:
         "A cross-functional AI governance committee, the organization's first AI use policy (approved tools, PHI-handling rules, adoption process), and a board-approved AI strategy for the district.",
       result:
-        "Policy approved and rolling out district-wide. Organization moved from unmanaged AI experimentation to <em>governed, strategic adoption</em> in five weeks.",
+        "<em>Built a complete AI strategy and governance foundation from zero</em> — protecting patient privacy, establishing PHI-handling guardrails, and sidestepping the compliance and reputational risks most organizations encounter when adopting AI without a framework. Policy approved and rolling out district-wide in five weeks.",
     },
     {
       n: "03",
