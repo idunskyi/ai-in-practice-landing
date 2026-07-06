@@ -160,81 +160,113 @@ function Testimonials() {
 function Pricing() {
   const tiers = [
     {
-      name: "Founding cohort",
-      price: "$4,950",
-      per: "",
-      desc: "The first 8 enrollees of Cohort 2. The Founding Rate won't repeat in future cohorts.",
-      meta: "8 of 8 founding seats remaining",
-      cta: "Apply for Cohort 2",
-      featured: true,
-      taken: 7, // 7 of 15 taken, 8 founding open
-    },
-    {
-      name: "Standard rate",
-      price: "$6,450",
-      per: "",
-      desc: "After the founding seats are filled. Same program, same cohort, same outputs.",
-      meta: "Cohort 2 seats — 15 max",
-      cta: "Apply",
+      name: "INDIVIDUAL",
+      price: "$1,500",
+      unit: "/ seat",
+      per: null,
+      tagline: "For the single leader getting ahead of AI.",
+      bullets: [
+        "All 5 live sessions, capped at 15 peers",
+        "Every framework, template, and prompt library",
+        "working agents on your workflows that save time and money",
+        "A board-ready AI roadmap",
+        "Access to the AI Executives Network",
+      ],
+      smallPrint: null,
+      cta: "Apply →",
+      ctaHref: "https://calendly.com/i-dunskiy-1/application-for-ai-in-practice-course",
       featured: false,
     },
     {
-      name: "Team of 3",
-      price: "$15,500",
-      per: "$5,167 per seat",
-      desc: "Bring two colleagues. Strongest outcomes when leaders learn alongside their org's adjacent decision-makers.",
-      meta: "Best for leadership teams",
-      cta: "Talk to us",
+      name: "TEAM OF 3",
+      price: "$3,900",
+      unit: null,
+      per: "$1,300 / seat",
+      tagline: "Bring the 2 people who'll implement with you.",
+      bullets: [
+        "3 seats — you, plus your revenue, compliance, and ops leads",
+        "1 shared roadmap, not 3 competing plans",
+        "$1,300 per seat — save $600 vs. individual",
+        "Everything in Individual, for all 3 seats",
+      ],
+      smallPrint: "Add seats at $1,300, up to 5 per org. Sending 6+? See Education + Implementation.",
+      cta: "Apply →",
+      ctaHref: "https://calendly.com/i-dunskiy-1/application-for-ai-in-practice-course",
+      featured: true,
+    },
+    {
+      name: "EDUCATION + IMPLEMENTATION",
+      price: "Custom",
+      unit: null,
+      per: null,
+      tagline: "For organizations moving from learning to rollout.",
+      bullets: [
+        "Program tailored to your team, workflows, and AI strategy",
+        "We build the automations alongside your people",
+        "Governance and roadmap set up for your org",
+        "Scope, timeline, and price after a discovery call",
+      ],
+      smallPrint: null,
+      // TODO: replace with a dedicated discovery-call booking URL when available
+      cta: "Book a discovery call →",
+      ctaHref: "https://calendly.com/i-dunskiy-1/ai-in-practice-education-implementation",
       featured: false,
     },
   ];
-
-  // for the featured tier, build a 15-slot bar (7 filled, 8 open)
-  const featuredSeats = Array.from({ length: 15 }, (_, i) => i < 7 ? "taken" : "");
 
   return (
     <section className="paper-3" id="pricing" data-screen-label="10 Pricing">
       <div className="shell">
         <div className="sec-head">
-          <span className="eyebrow">Cohort 2 · Now accepting applications</span>
-          <h2 className="h2">15 seats maximum. Application required.</h2>
+          <span className="eyebrow">COHORT 2 · ENROLLMENT</span>
+          <h2 className="h2">Choose your way in.</h2>
           <p className="lead">
-            Three ways in. The Founding Rate is locked to the first 8 enrollees of
-            Cohort 2 — after that, it's the Standard Rate or the team package.
+            One seat, a team of three, or a tailored org engagement. Every path starts with a 30 minute application call where we discuss your needs and how this program can help you.
           </p>
         </div>
 
         <div className="pricing-grid">
-          {tiers.map((t, i) => (
+          {tiers.map((t) => (
             <div key={t.name} className={"tier" + (t.featured ? " featured" : "")}>
-              {t.featured && <span className="badge">Founding rate</span>}
+              {t.featured && <span className="badge">BEST VALUE</span>}
               <div className="name">{t.name}</div>
               <div className="price">
                 {t.price}
+                {t.unit && <span className="per"> {t.unit}</span>}
                 {t.per && <span className="per"> · {t.per}</span>}
               </div>
-              <p className="desc">{t.desc}</p>
-
-              {t.featured && (
-                <div className="seats-bar" aria-label="7 of 15 cohort seats taken">
-                  {featuredSeats.map((s, j) => <i key={j} className={s} />)}
-                </div>
+              <p className="desc" style={{ flex: "none" }}>{t.tagline}</p>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 7, flex: 1 }}>
+                {t.bullets.map((b) => (
+                  <li key={b} style={{ fontSize: 13, lineHeight: 1.45, opacity: 0.82, paddingLeft: 14, position: "relative" }}>
+                    <span style={{ position: "absolute", left: 0 }}>•</span>{b}
+                  </li>
+                ))}
+              </ul>
+              {t.smallPrint && (
+                <p style={{ fontSize: 11, lineHeight: 1.5, opacity: 0.55, marginTop: 4 }}>{t.smallPrint}</p>
               )}
-
-              <div className="meta">{t.meta}</div>
               <a
-                href="#apply"
-                className={"btn " + (t.featured ? "btn-primary" : "btn-ghost-dark")}
-                style={{ marginTop: 16 }}
+                href={t.ctaHref}
+                className={"btn " + (t.featured ? "btn-primary" : "btn-ghost-light")}
+                style={{ marginTop: 8, minHeight: 44, alignSelf: "flex-start" }}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {t.cta} <span className="arrow" aria-hidden>→</span>
+                {t.cta}
               </a>
             </div>
           ))}
         </div>
 
-        <p className="mute" style={{ marginTop: 32, fontSize: 13, letterSpacing: "0.02em", textAlign: "center" }}>
-          The application is a 15-minute call · Questions? <a href="mailto:i.dunskiy@demigos.com" style={{ borderBottom: "1px solid currentColor" }}>i.dunskiy@demigos.com</a>
+        <div style={{ marginTop: 36, padding: "18px 24px", borderTop: "1px solid var(--rule-light)", textAlign: "center" }}>
+          <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.03em", opacity: 0.9 }}>
+            Two-Module Guarantee — attend Modules 1 and 2, request a full refund within 48 hours. No conditions.
+          </p>
+        </div>
+
+        <p className="mute" style={{ marginTop: 12, fontSize: 12, letterSpacing: "0.02em", textAlign: "center", opacity: 0.6 }}>
+          Questions? <a href="mailto:i.dunskiy@demigos.com" style={{ borderBottom: "1px solid currentColor" }}>i.dunskiy@demigos.com</a>
         </p>
       </div>
     </section>
@@ -285,7 +317,7 @@ function FAQ() {
       q: "When does Cohort 2 start? And when's Cohort 3 if I miss this one?",
       a: [
         "Cohort 2 starts in August 2026. Cohort 3 is currently planned for November 2026 but won't be announced publicly until Cohort 2 is full.",
-        "If you're sure this is for you, Cohort 2 is the right cohort to apply for — the Founding Rate of $4,950 is only available for the first 8 seats and won't repeat in future cohorts.",
+        "If you're sure this is for you, Cohort 2 is the right cohort to apply for.",
       ],
     },
     {
