@@ -259,11 +259,6 @@ function Pricing() {
           ))}
         </div>
 
-        <div style={{ marginTop: 36, padding: "18px 24px", borderTop: "1px solid var(--rule-light)", textAlign: "center" }}>
-          <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.03em", opacity: 0.9 }}>
-            Two-Module Guarantee — attend Modules 1 and 2, request a full refund within 48 hours. No conditions.
-          </p>
-        </div>
 
         <p className="mute" style={{ marginTop: 12, fontSize: 12, letterSpacing: "0.02em", textAlign: "center", opacity: 0.6 }}>
           Questions? <a href="mailto:i.dunskiy@demigos.com" style={{ borderBottom: "1px solid currentColor" }}>i.dunskiy@demigos.com</a>
